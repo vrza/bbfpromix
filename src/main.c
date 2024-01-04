@@ -159,7 +159,7 @@ static void activate(GtkApplication *app, gpointer *user_data) {
 
     // Initialize the main window
     main_window = gtk_application_window_new(app);
-    gtk_window_set_title(GTK_WINDOW(main_window), sprintf("%s Mixer", BABYFACE_PRO_CARD_NAME));
+    gtk_window_set_title(GTK_WINDOW(main_window), "Babyface Pro Mixer");
     gtk_window_set_default_size(GTK_WINDOW(main_window), 800, 600);
 
     // add the main grid
