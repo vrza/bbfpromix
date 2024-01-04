@@ -257,7 +257,7 @@ static void activate(GtkApplication *app, gpointer *user_data) {
     gtk_container_add(GTK_CONTAINER(main_window), GTK_WIDGET(main_grid));
 
     gtk_widget_show_all(main_window);
-    g_timeout_add(10, on_timeout, app_data);
+    g_timeout_add_seconds(1, on_timeout, app_data);
 }
 
 
