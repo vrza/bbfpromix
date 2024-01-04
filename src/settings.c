@@ -109,8 +109,7 @@ static int on_selem_changed_clock(snd_mixer_elem_t *elem, unsigned int mask) {
 
     if (mask == SND_CTL_EVENT_MASK_REMOVE) {
         gs->clock = NULL;
-    }
-    else if (mask == SND_CTL_EVENT_MASK_VALUE) {
+    } else if (mask == SND_CTL_EVENT_MASK_VALUE) {
         if (gs->no_signals)
             return 0;
         update_settings(gs);
@@ -126,8 +125,7 @@ static int on_selem_changed_spdif(snd_mixer_elem_t *elem,
 
     if (mask == SND_CTL_EVENT_MASK_REMOVE) {
         gs->spdif = NULL;
-    }
-    else if (mask == SND_CTL_EVENT_MASK_VALUE) {
+    } else if (mask == SND_CTL_EVENT_MASK_VALUE) {
         if (gs->no_signals)
             return 0;
         update_settings(gs);
@@ -143,8 +141,7 @@ static int on_selem_changed_spdif_emph(snd_mixer_elem_t *elem,
 
     if (mask == SND_CTL_EVENT_MASK_REMOVE) {
         gs->spdif_emph = NULL;
-    }
-    else if (mask == SND_CTL_EVENT_MASK_VALUE) {
+    } else if (mask == SND_CTL_EVENT_MASK_VALUE) {
         if (gs->no_signals)
             return 0;
         update_settings(gs);
@@ -160,8 +157,7 @@ static int on_selem_changed_spdif_pro(snd_mixer_elem_t *elem,
 
     if (mask == SND_CTL_EVENT_MASK_REMOVE) {
         gs->spdif_pro = NULL;
-    }
-    else if (mask == SND_CTL_EVENT_MASK_VALUE) {
+    } else if (mask == SND_CTL_EVENT_MASK_VALUE) {
         if (gs->no_signals)
             return 0;
         update_settings(gs);
@@ -177,22 +173,19 @@ bool bbf_settings_find_and_set(bbf_settings_t* gs, snd_mixer_elem_t* elem) {
         snd_mixer_elem_set_callback_private(elem, gs);
         update_settings(gs);
         return true;
-    }
-    else if (strcmp("IEC958", snd_mixer_selem_get_name(elem)) == 0) {
+    } else if (strcmp("IEC958", snd_mixer_selem_get_name(elem)) == 0) {
         gs->spdif = elem;
         snd_mixer_elem_set_callback(elem, on_selem_changed_spdif);
         snd_mixer_elem_set_callback_private(elem, gs);
         update_settings(gs);
         return true;
-    }
-    else if (strcmp("IEC958 Emphasis", snd_mixer_selem_get_name(elem)) == 0) {
+    } else if (strcmp("IEC958 Emphasis", snd_mixer_selem_get_name(elem)) == 0) {
         gs->spdif_emph = elem;
         snd_mixer_elem_set_callback(elem, on_selem_changed_spdif_emph);
         snd_mixer_elem_set_callback_private(elem, gs);
         update_settings(gs);
         return true;
-    }
-    else if (strcmp("IEC958 Pro Mask", snd_mixer_selem_get_name(elem)) == 0) {
+    } else if (strcmp("IEC958 Pro Mask", snd_mixer_selem_get_name(elem)) == 0) {
         gs->spdif_pro = elem;
         snd_mixer_elem_set_callback(elem, on_selem_changed_spdif_pro);
         snd_mixer_elem_set_callback_private(elem, gs);

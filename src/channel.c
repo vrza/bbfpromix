@@ -28,8 +28,7 @@ static int on_selem_changed(snd_mixer_elem_t *elem, unsigned int mask) {
 
     if (mask == SND_CTL_EVENT_MASK_REMOVE) {
         bbf_channel_reset(c);
-    }
-    else if (mask == SND_CTL_EVENT_MASK_VALUE) {
+    } else if (mask == SND_CTL_EVENT_MASK_VALUE) {
         if (c->no_signals)
             return 0;
         bbf_update_sliders(c);
@@ -44,8 +43,7 @@ static int on_selem_changed_48V(snd_mixer_elem_t *elem, unsigned int mask) {
 
     if (mask == SND_CTL_EVENT_MASK_REMOVE) {
         c->phantom = NULL;
-    }
-    else if (mask == SND_CTL_EVENT_MASK_VALUE) {
+    } else if (mask == SND_CTL_EVENT_MASK_VALUE) {
         if (c->no_signals)
             return 0;
         bbf_update_switches(c);
@@ -60,8 +58,7 @@ static int on_selem_changed_pad(snd_mixer_elem_t *elem, unsigned int mask) {
 
     if (mask == SND_CTL_EVENT_MASK_REMOVE) {
         c->pad = NULL;
-    }
-    else if (mask == SND_CTL_EVENT_MASK_VALUE) {
+    } else if (mask == SND_CTL_EVENT_MASK_VALUE) {
         if (c->no_signals)
             return 0;
         bbf_update_switches(c);
@@ -76,8 +73,7 @@ static int on_selem_changed_sens(snd_mixer_elem_t *elem, unsigned int mask) {
 
     if (mask == SND_CTL_EVENT_MASK_REMOVE) {
         c->sens = NULL;
-    }
-    else if (mask == SND_CTL_EVENT_MASK_VALUE) {
+    } else if (mask == SND_CTL_EVENT_MASK_VALUE) {
         if (c->no_signals)
             return 0;
         bbf_update_switches(c);
@@ -137,8 +133,7 @@ static void on_slider_changed(GtkWidget* slider, gpointer user_data) {
               ((BBF_VOL_MAX - BBF_VOL_ZERO_DB) /
                (BBF_VOL_SLIDER_MAX - BBF_VOL_SLIDER_ZERO_DB))
                + BBF_VOL_ZERO_DB;
-    }
-    else {
+    } else {
         vol *= (BBF_VOL_ZERO_DB - BBF_VOL_MIN) /
                (BBF_VOL_SLIDER_ZERO_DB - BBF_VOL_SLIDER_MIN);
     }
@@ -149,14 +144,12 @@ static void on_slider_changed(GtkWidget* slider, gpointer user_data) {
         double diff = vol / 100. * pan;
         val_r = vol - diff;
         val_l = vol;
-    }
-    else if (pan > 0){
+    } else if (pan > 0){
         // links reduzieren
         double diff = vol / 100. * pan;
         val_l = vol - diff;
         val_r = vol;
-    }
-    else {
+    } else {
         val_l = vol;
         val_r = vol;
     }
@@ -336,7 +329,6 @@ void bbf_update_switches(bbf_channel_t *channel) {
             gtk_toggle_button_set_active(GTK_TOGGLE_BUTTON(channel->bt_48V),
                                          phantom == 1);
         }
-
         if (channel->pad) {
             int pad = 0;
             snd_mixer_selem_get_playback_switch(channel->pad, 0, &pad);
@@ -372,12 +364,10 @@ void bbf_update_sliders(bbf_channel_t *channel) {
     if (diff < 0) {
         pan = (int8_t)(100./val_l * diff);
         fader = val_l;
-    }
-    else if (diff > 0) {
+    } else if (diff > 0) {
         pan = (int8_t)(100./val_r * diff);
         fader = val_r;
-    }
-    else {
+    } else {
         pan = 0;
         fader = val_l;
     }
@@ -387,8 +377,7 @@ void bbf_update_sliders(bbf_channel_t *channel) {
         fader = ((BBF_VOL_SLIDER_MAX - BBF_VOL_SLIDER_ZERO_DB) / 
                  (BBF_VOL_MAX - BBF_VOL_ZERO_DB)) * 
                 (fader - BBF_VOL_ZERO_DB) + BBF_VOL_SLIDER_ZERO_DB;
-    } 
-    else {
+    } else {
         fader = ((BBF_VOL_SLIDER_ZERO_DB - BBF_VOL_SLIDER_MIN) / 
                  (BBF_VOL_ZERO_DB - BBF_VOL_MIN)) *
                 fader;
