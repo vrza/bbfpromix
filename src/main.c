@@ -33,6 +33,8 @@ typedef struct __app_data {
     bool no_signals;
 } bbf_app_data_t;
 
+static const char BABYFACE_PRO_CARD_NAME[] = "Babyface Pro";
+
 static int connect_alsa_mixer(bbf_app_data_t *app_data) {
     int err;
     const char* card = NULL;
@@ -60,7 +62,7 @@ static int connect_alsa_mixer(bbf_app_data_t *app_data) {
         if (!card_name) {
             continue;
         }
-        if (strstr(card_name, "Babyface Pro") != NULL) {
+        if (strstr(card_name, BABYFACE_PRO_CARD_NAME) != NULL) {
             // card found
             card = buf;
         }
@@ -132,7 +134,7 @@ static gint on_timeout(gpointer user_data) {
     if (!app_data->mixer) {
         int r = connect_alsa_mixer(app_data);
         if (r == 0) {
-            printf("Connected.\n");
+            printf("%s connected\n", BABYFACE_PRO_CARD_NAME);
             connect_alsa_mixer_elems(app_data);
         }
     } else {
@@ -140,7 +142,7 @@ static gint on_timeout(gpointer user_data) {
         if (r < 0) {
             snd_mixer_close(app_data->mixer);
             app_data->mixer = NULL;
-            printf("disonnected.\n");
+            printf("%s disonnected\n", BABYFACE_PRO_CARD_NAME);
             reset_alsa_mixer_elems(app_data);
         }
     }
@@ -157,7 +159,7 @@ static void activate(GtkApplication *app, gpointer *user_data) {
 
     // Initialize the main window
     main_window = gtk_application_window_new(app);
-    gtk_window_set_title(GTK_WINDOW(main_window), "Babyface Pro Mixer");
+    gtk_window_set_title(GTK_WINDOW(main_window), sprintf("%s Mixer", BABYFACE_PRO_CARD_NAME));
     gtk_window_set_default_size(GTK_WINDOW(main_window), 800, 600);
 
     // add the main grid
