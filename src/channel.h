@@ -18,7 +18,7 @@
  *  along with bbfpromix.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef __CHANNEL_H_
+#ifndef __CHANNEL_H__
 #define __CHANNEL_H__
 
 #include <gtk/gtk.h>
