@@ -1,12 +1,15 @@
 # ALSA Mixer Frontend for RME Babyface Pro (FS)
 
-## Important: I will no longer maintain this project, as I'm no longer using Linux for audio projects, and upgraded to a different RME device! 
+## Requirements
 
-Concurrent kernel version required.
+- Linux
+- ALSA dev libs
+- GTK 3 dev libs
 
-A simple make should do on this.
+## Compiling
 
-If you want to debug it, use `make DEBUG="true"`
+Use GNU `make` to build.
+
+If you want to debug it, use `make DEBUG="true"`.
 
 Use with caution!
-
