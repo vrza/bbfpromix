@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
 Name=Babyface Pro Mixer
-Icon=bbfpromix.png
+Icon=bbfpromix.svg
 StartupNotify=true
-Exec=@bindir@/bbfpromix
+Exec=bbfpromix

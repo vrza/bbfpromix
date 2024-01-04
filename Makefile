@@ -34,7 +34,7 @@ $(BUILDDIR)/bbfpromix: $(BUILDDIR)/channel.o $(BUILDDIR)/settings.o $(BUILDDIR)/
 	$(CC) $^ $(BUILD_C_FLAGS) $(LINK_FLAGS) -lm $(SHARED) -o $@
 
 $(BUILDDIR)/bbfpromix.desktop: misc/bbfpromix.desktop
-	sed -s "s#@bindir@#$(DESTDIR)$(PREFIX)/bin#g" $^ > $@
+	cp $< $@
 
 $(BUILDDIR):
 	mkdir -p $(BUILDDIR)
@@ -50,17 +50,17 @@ install: bbfpromix
 	echo "Install"
 	install -d $(DESTDIR)$(PREFIX)/bin
 	install -d $(DESTDIR)$(PREFIX)/share/applications
-	install -d $(DESTDIR)$(PREFIX)/share/pixmaps
+	install -d $(DESTDIR)$(PREFIX)/share/icons
 
-	install -m 755 $(BUILDDIR)/bbfpromix  $(DESTDIR)$(PREFIX)/bin/bbfpromix
-	install -m 644 ./misc/icon.png  $(DESTDIR)$(PREFIX)/share/pixmaps/bbfpromix.png
-	install -m 644 $(BUILDDIR)/bbfpromix.desktop  $(DESTDIR)$(PREFIX)/share/applications/bbfpromix.desktop
+	install -m 755 $(BUILDDIR)/bbfpromix $(DESTDIR)$(PREFIX)/bin/bbfpromix
+	install -m 644 ./misc/bbfpromix.svg $(DESTDIR)$(PREFIX)/share/icons/bbfpromix.svg
+	install -m 644 $(BUILDDIR)/bbfpromix.desktop $(DESTDIR)$(PREFIX)/share/applications/bbfpromix.desktop
 
 # --------------------------------------------------------------
 uninstall:
 	echo "Uninstall"
 	rm -f $(DESTDIR)$(PREFIX)/bin/bbfpromix
-	rm -f $(DESTDIR)$(PREFIX)/share/pixmaps/bbfpromix.png
+	rm -f $(DESTDIR)$(PREFIX)/share/icons/bbfpromix.svg
 	rm -f $(DESTDIR)$(PREFIX)/share/applications/bbfpromix.desktop
 	
 # --------------------------------------------------------------
