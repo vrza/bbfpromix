@@ -3,8 +3,8 @@
 ## Requirements
 
 - Linux
-- ALSA dev libs
-- GTK 3 dev libs
+- ALSA (libs and headers)
+- GTK 3 (libs and headers)
 
 ## Compiling
 
